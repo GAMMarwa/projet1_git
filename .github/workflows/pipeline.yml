@@ -1,0 +1,40 @@
+
+name: Demo GitHub Actions
+
+# Déclenchement à chaque push sur main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  demo:
+    name: Job de démonstration
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape 1 : Récupérer le code source
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      # Étape 2 : Afficher un message
+      - name: Message de bienvenue
+        run: echo "Bienvenue dans GitHub Actions !"
+
+      # Étape 3 : Afficher la branche courante
+      - name: Informations sur le dépôt
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "Commit: $GITHUB_SHA"
+
+      # Étape 4 : Simuler une compilation
+      - name: Simulation du build
+        run: |
+          echo "Début de la compilation..."
+          sleep 3
+          echo "Compilation terminée avec succès !"
+
+      # Étape 5 : Fin du workflow
+      - name: Résultat final
+        run: echo "Workflow GitHub Actions exécuté avec succès !"
